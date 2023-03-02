@@ -2,6 +2,7 @@ from databaze import *
 from bs4 import BeautifulSoup
 import requests
 
+# nuskaitome visus duomenys is svetaines www.cvbankas.lt
 try:
     source = requests.get('https://www.cvbankas.lt/').text
     soup = BeautifulSoup(source, 'html.parser')
@@ -13,7 +14,7 @@ except requests.exceptions.RequestException as klaida:
 
 Base.metadata.create_all(bind=engine)
 
-
+#Isskiriami duomenys pagal profesija, imone, atlyginima, miesta, data,
 for blokai in blokas:
     try:
         profesija = blokai.find('h3', class_="list_h3", lang="lt").text.strip()
